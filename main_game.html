@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Galactic Salesman</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="main_game.css">
+
+</head>
+<body class="container">
+<div class="item0" id="game_bar">
+</div>
+
+<div class="item2">
+    <div class="item3" id="ships">
+        <h2 class="caption">Ships</h2>
+        <table class="ships">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Location</th>
+            </tr>
+            </thead>
+            <tbody id="ships23">
+            <tr>
+                <td><a href="#popup2" class="button" id="Rocinante" onclick="showShipPopup('Rocinante')">Rocinante</a></td>
+                <td>Alderaan</td>
+            </tr>
+            <tr>
+                <td><a href="#popup3" class="button" id="Axiom" onclick="showShipPopup('Axiom')">Axiom</a></td>
+                <td>Tatooine</td>
+            </tr>
+            <tr>
+                <td><a href="#popup2" class="button" id="Enterprise" onclick="showShipPopup('Enterprise')">Enterprise</a></td>
+                <td>Corellia</td>
+            </tr>
+            <tr>
+                <td><a href="#popup2" class="button">Goliath</a></td>
+                <td>Sur'Kesh</td>
+            </tr>
+            <tr>
+                <td><a href="#popup2" class="button">Hermes</a></td>
+                <td>NowWhat</td>
+            </tr>
+            <tr>
+                <td><a href="#popup2" class="button">Millenium Falcon</a></td>
+                <td>Tatooine</td>
+            </tr>
+            <tr>
+                <td><a href="#popup2" class="button">Niezwyciężony</a></td>
+                <td>Argoland</td>
+            </tr>
+            <tr>
+                <td><a href="#popup2" class="button">Normandy SR-2</a></td>
+                <td>Gaia</td>
+            </tr>
+            <tr>
+                <td><a href="#popup2" class="button">Nostromo</a></td>
+                <td>Arrakis</td>
+            </tr>
+            <tr>
+                <td><a href="#popup2" class="button">Космонавт Алексе́й Лео́нов</a></td>
+                <td>Arrakis</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="item4" id="planets">
+        <h2 class="caption">Planets</h2>
+        <table class="planets">
+            <tr><td><a href="#popup1" class="button" id="Ziemia" onclick="showPlanetPopup('Ziemia')">Ziemia</a></td></tr>
+            <tr><td><a href="#popup1" class="button" id="Alderaan" onclick="showPlanetPopup('Alderaan')">Alderaan</a></td></tr>
+            <tr><td><a href="#popup1" class="button" onclick="showPlanetPopup('Argoland')">Argoland</a></td></tr>
+            <tr><td><a href="#popup1" class="button" onclick="showPlanetPopup('Arrakis')">Arrakis</a></td></tr>
+            <tr><td><a href="#popup1" class="button" onclick="showPlanetPopup('Corellia')">Corellia</a></td></tr>
+            <tr><td><a href="#popup1" class="button" onclick="showPlanetPopup('Encja')">Encja</a></td></tr>
+            <tr><td><a href="#popup1" class="button" onclick="showPlanetPopup('Gaia')">Gaia</a></td></tr>
+            <tr><td><a href="#popup1" class="button" onclick="showPlanetPopup('Ksi')">Ksi</a></td></tr>
+            <tr><td><a href="#popup1" class="button" onclick="showPlanetPopup('Leonida')">Leonida</a></td></tr>
+            <tr><td><a href="#popup1" class="button" onclick="showPlanetPopup('NowWhat')">NowWhat</a></td></tr>
+            <tr><td><a href="#popup1" class="button" onclick="showPlanetPopup('Sur\'Kesh')">Sur'Kesh</a></td></tr>
+            <tr><td><a href="#popup1" class="button" onclick="showPlanetPopup('Tairia')">Tairia</a></td></tr>
+            <tr><td><a href="#popup1" class="button" onclick="showPlanetPopup('Tatooine')">Tatooine</a></td></tr>
+            <tr><td><a href="#popup1" class="button" onclick="showPlanetPopup('Tuchanka')">Tuchanka</a></td></tr>
+        </table>
+    </div>
+</div>
+
+<div id="popup1" class="overlay">
+    <div class="popup">
+        <a class="close" href="#">&times;</a>
+        <div class="content">
+            <div class="item1">
+                <h3 id="planet_name">Ziemia</h3>
+                <h3 id="planet_location"></h3>
+            </div>
+            <div class="item2popup">
+                <div class="item3">
+                    <table id="commodities_table">
+                        <thead>
+                        <tr>
+                            <th>Commodity</th>
+                            <th>Amount</th>
+                            <th>Ask</th>
+                            <th>Bid</th>
+                        </tr>
+                        </thead>
+                        <tbody id="commodities_on_planet">
+                        <tr>
+                            <td>Piasek</td>
+                            <td>1000</td>
+                            <td>10</td>
+                            <td>8</td>
+                        </tr>
+                        <tr>
+                            <td>Ziemniaki</td>
+                            <td>200</td>
+                            <td>20</td>
+                            <td>18</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="item4">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Ships</th>
+                        </tr>
+                        </thead>
+                        <tbody id="ships_on_planet">
+                        <tr>
+                            <td><a href="#popup2" class="button2">Rocinante</a></td>
+                        </tr>
+                        <tr>
+                            <td><a href="#popup3" class="button2">Axiom</a></td>
+                        </tr>
+                         <tr>
+                             <td><a href="#popup2" class="button2">Goliath</a></td>
+                         </tr>
+                        <tr>
+                            <td><a href="#popup2" class="button2">Gaia</a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="popup2" class="overlay">
+    <div class="popup">
+        <a class="close" href="#">&times;</a>
+        <div class="content">
+            <div class="item1">
+                <h3 id="ship_name_during_journey">Rocinante</h3>
+                <h4 id="location_in_journey"></h4>
+                <h4 id="remaining_time"></h4>
+            </div>
+            <div class="item2popup">
+                <div class="item3">
+                    <table class="commodities" id="commodities_in_journey">
+                        <tr>
+                            <th>Commodity</th>
+                            <th>Amount</th>
+                        </tr>
+                        <tr>
+                            <td>Piasek</td>
+                            <td>1000</td>
+                        </tr>
+                        <tr>
+                            <td>Ziemniaki</td>
+                            <td>200</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="popup3" class="overlay">
+    <div class="popup">
+        <a class="close" href="#">&times;</a>
+        <div class="content">
+            <div class="item1">
+                <h3 id="ship_name_on_planet">Axiom</h3>
+                <h4 id="ship_location"></h4>
+                <h4 id="free_capacity"></h4>
+            </div>
+            <div class="item2popup2">
+                <div class="item3">
+                    <table id="commodities_table1">
+                        <thead>
+                        <tr>
+                            <th>Commodity</th>
+                            <th>Amount</th>
+                        </tr>
+                        </thead>
+                        <tbody id="commodities_on_ship">
+                        <tr>
+                            <td>Piasek</td>
+                            <td>1000</td>
+                        </tr>
+                        <tr>
+                            <td>Ziemniaki</td>
+                            <td>200</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="item4towary">
+                    <div>
+                    <br>
+                    <form onsubmit="buyCommodity();return false">
+                        <select id="commodity_to_buy">
+                        </select><br>
+                        Amount<br>
+                        <input type="number" id="amount_to_buy" name="lastname" value=""><br><br>
+                        <input  class="button2" type="submit" id="buy" value="Buy"/>
+                    </form>
+                    </div>
+                    <div>
+                        <br>
+                        <form onsubmit="sellCommodity();return false">
+                            <select id="commodity_to_sell">
+                            </select><br>
+                            Amount<br>
+                            <input type="number" id="amount_to_sell" name="lastname" value=""><br><br>
+                            <input class="button2" type="submit" id="sell" value="Sell">
+                        </form>
+                    </div>
+                    <form onsubmit="beginJourney();return false">
+                        <br>
+                        <select id="planet_to_travel">
+                            <option label="Planeta:">Planet:</option>
+                            <option value="">Alderaan</option>
+                            <option value="">Argoland</option>
+                            <option value="">Arrakis</option>
+                            <option value="">Corellia</option>
+                            <option value="">Encja</option>
+                            <option value="">Gaja</option>
+                            <option value="">Ksi</option>
+                            <option value="">NowWhat</option>
+                            <option value="">Sur'Khesh</option>
+                            <option value="">Tairia</option>
+                            <option value="">Tatooine</option>
+                            <option value="">Tuchanka</option>
+                            <option value="">Ziemia</option>
+                        </select><br><br>
+                        <input class="button2" type="submit" id="start_journey" value="Start journey"/>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="overlay" id="notification_popup">
+    <div class="popup" id="notif">
+        <a class="close" href="#popup3">&times;</a>
+        <div class="content">
+            <h4 id="notification">Za malo funduszy</h4>
+        </div>
+    </div>
+</div>
+<script src="main_game.js"></script>
+</body>
+</html>

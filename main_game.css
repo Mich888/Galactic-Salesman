@@ -1,0 +1,235 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+}
+
+body {
+    background-image: url("black.jpg");
+    color: white;
+    background-blend-mode: darken;
+    background-color: dimgrey;
+}
+
+.item0 {
+    display: flex;
+    justify-content: space-around;
+    font-size: xx-large;
+    padding-bottom: 2%;
+    padding-left: 20%;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    transition: opacity 500ms;
+    visibility: hidden;
+    opacity: 0;
+    text-align: center;
+}
+
+.overlay:target {
+    visibility: visible;
+    opacity: 1;
+}
+
+#information_bar {
+    font-size: x-large;
+}
+
+.item0 table {
+    margin-left: auto;
+    margin-right: auto;
+    table-layout: fixed;
+    width: 40%;
+}
+
+.button {
+    font-size: 1em;
+    padding: 3px;
+    color: #fff;
+    border: 1px solid white;
+    border-radius: 20px/50px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+}
+.button:hover {
+    background: grey;
+}
+
+.button2 {
+    font-size: 1em;
+    padding: 3px;
+    color: black;
+    border: 1px solid black;
+    border-radius: 20px/50px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+}
+
+.button2:hover {
+    background: grey;
+}
+
+.popup {
+    margin: 6% auto;
+    padding: 20px 0px 0px 0px;
+    background: #fff;
+    border: 5px solid grey;
+    border-radius: 5px;
+    width: 35%;
+    position: relative;
+    transition: all 5s ease-in-out;
+    color: black;
+    height: auto;
+}
+
+.popup h2 {
+    margin-top: 0;
+    color: #333;
+    font-family: Tahoma, Arial, sans-serif;
+}
+
+.popup .close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    transition: all 200ms;
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
+}
+.popup .close:hover {
+    color: grey;
+}
+.popup .content {
+    max-height: 35%;
+    overflow: auto;
+    padding-bottom: 10px;
+}
+
+.item1 {
+    margin-left: auto;
+    margin-right: auto;
+    table-layout: fixed;
+    height: 20%;
+}
+
+.item2 {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.ships tr, td {
+    padding-bottom: 10px;
+}
+
+.planets li {
+    margin: 10px;
+}
+
+.content {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.caption {
+    text-align: center;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.item2popup {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.item4towary {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.popup2 table, .popup2 td, .popup2 tr {
+    margin-left: auto;
+    margin-right: auto;
+    table-layout: fixed;
+    width: 30%;
+    border: 1px solid white;
+    font-size: large;
+    border-collapse: collapse;
+}
+
+.form_button {
+    background-color: lightslategrey;
+    border: none;
+    padding: 2px 5px;
+}
+
+#commodities_table1 {
+    table-layout: fixed;
+    width: 50%;
+}
+
+#commodities_in_journey, #commodities_on_planet{
+    table-layout: fixed;
+    width: 30%;
+}
+
+#notif {
+    margin: 13% auto;
+    padding: 20px 0px 0px 0px;
+    background: #fff;
+    border: 5px solid grey;
+    border-radius: 5px;
+    width: 20%;
+    position: relative;
+    transition: all 5s ease-in-out;
+    color: black;
+    height: auto;
+}
+
+#ships, #planets {
+    font-size: x-large;
+}
+
+@media screen and (min-width: 200px) and (max-width: 600px) {
+    .popup {
+        width: 70%;
+    }
+
+    .item2 {
+        flex-direction: column;
+    }
+
+    .item4towary {
+        flex-direction: column;
+    }
+
+    .item2popup {
+        flex-direction: column;
+    }
+
+    .item0 {
+        padding-left: 0;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+    }
+}

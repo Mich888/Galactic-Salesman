@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Galactic Salesman</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="index.css">
+</head>
+<body>
+<div class="container">
+<div class="item1">
+    <h1>Galactic Salesman</h1>
+    <br><br>
+    <a href="#popup1" class="button" id="new_game">New game</a>
+    <div id="popup1" class="overlay">
+        <div class="popup">
+            <a class="close" href="#">&times;</a>
+            <div class="content">
+                <h4>nickname</h4>
+                <form>
+                    <input type="text" id="nickname" value="" onchange="updateNickname('nickname');"><br><br>
+                    <input type="submit" class="button2" id='start_game' formaction="main_game.html" value="Start game"/>
+                </form>
+            </div>
+        </div>
+    </div>
+    <br><br><br><br>
+
+    <h2>Leaderboard</h2>
+    <table>
+        <tbody id="leaderboard"></tbody>
+    </table>
+
+</div>
+</div>
+<script src="index.js"></script>
+</body>
+</html>
