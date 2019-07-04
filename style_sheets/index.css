@@ -10,7 +10,7 @@ table, th, td {
 
 body {
     background-color: dimgrey;
-    background-image: url("black.jpg");
+    background-image: url("../background.jpg");
     color: white;
     background-blend-mode: darken;
 }

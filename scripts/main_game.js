@@ -18,6 +18,14 @@ class Ship {
         this.freeCapacity = capacity;
     }
 }
+class Player {
+    constructor(n, s) {
+        this.n = n;
+        this.s = s;
+        this.name = n;
+        this.score = s;
+    }
+}
 let ship1 = new Ship("Axiom", 27, "Tatooine");
 let ship2 = new Ship("Enterprise", 46, "Corellia");
 let ship3 = new Ship("Goliath", 33, "Sur'Kesh");
@@ -36,16 +44,8 @@ class Planet {
         this.bid = new Map();
     }
 }
-class Player {
-    constructor(n, s) {
-        this.n = n;
-        this.s = s;
-        this.name = n;
-        this.score = s;
-    }
-}
 let planets = new Map();
-let remainingTime = 300;
+let remainingTime = 5;
 let nickname2 = localStorage.getItem("nickname");
 let balance = 1000;
 let ships = new Map();
@@ -78,7 +78,7 @@ function updateBalance(newBalance) {
 }
 function endGame() {
     window.location.href = 'index.html';
-    let player = new Player(nickname2, balance);
+    let player = new Player(nickname, balance);
     let players = [];
     if (localStorage.getItem("leaderboard") != null) {
         console.log("leaderboard exists");
@@ -101,8 +101,8 @@ function showShipOnPlanet(ship) {
     console.log("on planet " + ship);
     document.getElementById("ship_name_on_planet").innerText = ship;
     let shipLocation = ships.get(ship).planet;
-    document.getElementById("ship_location").innerText = "Location: " + shipLocation;
-    document.getElementById("free_capacity").innerText = "Free space on ship: " + ships.get(ship).freeCapacity;
+    document.getElementById("ship_location").innerText = "Położenie: " + shipLocation;
+    document.getElementById("free_capacity").innerText = "Wolne miejsce na statku: " + ships.get(ship).freeCapacity;
     let planetsToTravel = document.getElementById("planet_to_travel");
     planetsToTravel.innerHTML = "";
     planets.forEach((planet, planetName) => {
@@ -113,7 +113,7 @@ function showShipOnPlanet(ship) {
         }
     });
     let commodityToBuy = document.getElementById("commodity_to_buy");
-    commodityToBuy.innerHTML = "<option label='Commodity:'>Commodity:</option>";
+    commodityToBuy.innerHTML = "<option label='Towar:'>Towar:</option>";
     planets.get(shipLocation).commodities.forEach((amount, commodity) => {
         if (amount > 0) {
             let option = document.createElement("option");
@@ -122,7 +122,7 @@ function showShipOnPlanet(ship) {
         }
     });
     let commodityToSell = document.getElementById("commodity_to_sell");
-    commodityToSell.innerHTML = "<option label='Commodity:'>Commodity:</option>";
+    commodityToSell.innerHTML = "<option label='Towar:'>Towar:</option>";
     let commoditiesOnShip = document.getElementById("commodities_on_ship");
     let commodities = "";
     ships.get(ship).commodities.forEach((amount, commodity) => {
@@ -139,12 +139,12 @@ function showShipDuringJourney(ship) {
     console.log("on journey " + ship);
     document.getElementById("ship_name_during_journey").innerText = ship;
     let journeyTime = remainingTime - ships.get(ship).arrivalTime;
-    document.getElementById("location_in_journey").innerText = "In journey to: " + ships.get(ship).planet;
-    document.getElementById("remaining_time").innerText = "Remaining time after arrival: " + ships.get(ship).arrivalTime;
+    document.getElementById("location_in_journey").innerText = "W trasie do: " + ships.get(ship).planet;
+    document.getElementById("remaining_time").innerText = "Pozostały czas gry po dotarciu: " + ships.get(ship).arrivalTime;
 }
 function showPlanetPopup(planetName) {
     document.getElementById("planet_name").innerText = planetName;
-    document.getElementById("planet_location").innerText = "Location: " + "(" + planets.get(planetName).x + ", " +
+    document.getElementById("planet_location").innerText = "Położenie: " + "(" + planets.get(planetName).x + ", " +
         planets.get(planetName).y + ")";
     let ships_on_planet = "";
     let ships_ref = document.getElementById("ships_on_planet");
@@ -187,7 +187,7 @@ function showShips() {
             rowRef.innerHTML = '<td><a href="#popup3" class="button">' + shipName + '</a></td><td>' + ship.planet + '</td>';
         }
         else {
-            rowRef.innerHTML = '<td><a href="#popup2" class="button">' + shipName + '</a></td><td>' + ship.planet + " (during journey)" + '</td>';
+            rowRef.innerHTML = '<td><a href="#popup2" class="button">' + shipName + '</a></td><td>' + ship.planet + " (w podróży)" + '</td>';
         }
         rowRef.cells[0].onclick = function () {
             showShipPopup(shipName);
@@ -209,20 +209,20 @@ function buyCommodity() {
     console.log("amount to buy: " + amountToBuy);
     let price = amountToBuy * planet.ask.get(commodityToBuy);
     console.log("price: " + price);
-    if (commodityToBuy == "Commodity:") {
-        showErrorPopup("Choose commodity");
+    if (commodityToBuy == "Towar:") {
+        showErrorPopup("Wybierz towar");
     }
     else if (isNaN(amountToBuy)) {
-        showErrorPopup("Choose amount");
+        showErrorPopup("Wybierz ilość");
     }
     else if (price > balance) {
-        showErrorPopup("Not enough balance");
+        showErrorPopup("Niewystarczające fundusze");
     }
     else if (ship.freeCapacity < amountToBuy) {
-        showErrorPopup("Not enough free space on ship");
+        showErrorPopup("Za mało miejsca na statku");
     }
     else if (amountToBuy > planet.commodities.get(commodityToBuy)) {
-        showErrorPopup("Not enough commodity on planet");
+        showErrorPopup("Za mało towaru na planecie");
     }
     else {
         ship.freeCapacity -= amountToBuy;
@@ -247,14 +247,14 @@ function sellCommodity() {
     let ship = ships.get(shipName.innerText);
     let planetName = ships.get(shipName.innerText).planet;
     let planet = planets.get(planetName);
-    if (commodityToSell == "Commodity:") {
-        showErrorPopup("Choose commodity");
+    if (commodityToSell == "Towar:") {
+        showErrorPopup("Wybierz towar");
     }
     else if (isNaN(amountToSell)) {
-        showErrorPopup("Choose amount");
+        showErrorPopup("Wybierz ilość");
     }
     else if (amountToSell > ship.commodities.get(commodityToSell)) {
-        showErrorPopup("Not enough commodity on ship");
+        showErrorPopup("Za mało towaru na statku");
     }
     else {
         ship.freeCapacity += amountToSell;
@@ -1040,10 +1040,14 @@ for (let planetJSON in planetsJSON) {
     planet.x = planetInfo["x"];
     planet.y = planetInfo["y"];
     for (let item in availableItems) {
+        console.log(item);
         let it = availableItems[item];
         planet.commodities.set(item, it["available"]);
         planet.ask.set(item, it["buy_price"]);
         planet.bid.set(item, it["sell_price"]);
+        console.log(it["available"]);
+        console.log(it["buy_price"]);
+        console.log(it["sell_price"]);
         planets.set(planetJSON, planet);
     }
 }
@@ -1072,16 +1076,16 @@ planets.get("Corellia").commodities.set("Nuka-Cola", 0);
 planets.get("Corellia").ask.set("Nuka-Cola", 45);
 planets.get("Corellia").bid.set("Nuka-Cola", 40);
 planets.get("Corellia").commodities.set("Woda", 0);
-planets.get("Corellia").ask.set("Woda", 89);
-planets.get("Corellia").bid.set("Woda", 85);
+planets.get("Corellia").commodities.set("Woda", 89);
+planets.get("Corellia").commodities.set("Woda", 85);
 planets.get("Gaia").commodities.set("Murkwie", 0);
 planets.get("Gaia").ask.set("Murkwie", 39);
 planets.get("Gaia").bid.set("Murkwie", 35);
 planets.get("Gaia").commodities.set("Unobtanium", 0);
 planets.get("Gaia").ask.set("Unobtanium", 76);
 planets.get("Gaia").bid.set("Unobtanium", 70);
-planets.get("Gaia").commodities.set("Nuka-Cola", 0);
-planets.get("Gaia").ask.set("Nuka-Cola", 68);
+planets.get("Gaia").bid.set("Nuka-Cola", 0);
+planets.get("Gaia").bid.set("Nuka-Cola", 68);
 planets.get("Gaia").bid.set("Nuka-Cola", 60);
 planets.get("Leonida").commodities.set("Woda", 0);
 planets.get("Leonida").ask.set("Woda", 19);
@@ -1093,17 +1097,17 @@ planets.get("NowWhat").commodities.set("Lyrium", 0);
 planets.get("NowWhat").ask.set("Lyrium", 17);
 planets.get("NowWhat").bid.set("Lyrium", 16);
 planets.get("NowWhat").commodities.set("Unobtanium", 0);
-planets.get("NowWhat").ask.set("Unobtanium", 68);
-planets.get("NowWhat").bid.set("Unobtanium", 65);
+planets.get("NowWhat").commodities.set("Unobtanium", 68);
+planets.get("NowWhat").commodities.set("Unobtanium", 65);
 planets.get("Sur'Kesh").commodities.set("Dwimeryt", 0);
 planets.get("Sur'Kesh").ask.set("Dwimeryt", 46);
 planets.get("Sur'Kesh").bid.set("Dwimeryt", 43);
 planets.get("Sur'Kesh").commodities.set("Złoto", 0);
-planets.get("Sur'Kesh").ask.set("Złoto", 79);
-planets.get("Sur'Kesh").bid.set("Złoto", 70);
+planets.get("Sur'Kesh").commodities.set("Złoto", 79);
+planets.get("Sur'Kesh").commodities.set("Złoto", 70);
 planets.get("Tairia").commodities.set("Dwimeryt", 0);
 planets.get("Tairia").ask.set("Dwimeryt", 27);
 planets.get("Tairia").bid.set("Dwimeryt", 25);
 planets.get("Tairia").commodities.set("Proteańskie dyski", 0);
-planets.get("Tairia").ask.set("Proteańskie dyski", 36);
-planets.get("Tairia").bid.set("Proteańskie dyski", 33);
+planets.get("Tairia").commodities.set("Proteańskie dyski", 36);
+planets.get("Tairia").commodities.set("Proteańskie dyski", 33);
