@@ -56,7 +56,7 @@ class Planet {
 
 let planets = new Map<string, Planet>();
 
-let remainingTime: number = 5;
+let remainingTime: number = 300;
 let nickname2: string = localStorage.getItem("nickname");
 
 let balance: number = 1000;

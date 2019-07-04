@@ -18,14 +18,6 @@ class Ship {
         this.freeCapacity = capacity;
     }
 }
-class Player {
-    constructor(n, s) {
-        this.n = n;
-        this.s = s;
-        this.name = n;
-        this.score = s;
-    }
-}
 let ship1 = new Ship("Axiom", 27, "Tatooine");
 let ship2 = new Ship("Enterprise", 46, "Corellia");
 let ship3 = new Ship("Goliath", 33, "Sur'Kesh");
@@ -45,7 +37,7 @@ class Planet {
     }
 }
 let planets = new Map();
-let remainingTime = 5;
+let remainingTime = 300;
 let nickname2 = localStorage.getItem("nickname");
 let balance = 1000;
 let ships = new Map();

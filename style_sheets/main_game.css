@@ -6,7 +6,7 @@
 }
 
 body {
-    background-image: url("black.jpg");
+    background-image: url("../background.jpg");
     color: white;
     background-blend-mode: darken;
     background-color: dimgrey;
